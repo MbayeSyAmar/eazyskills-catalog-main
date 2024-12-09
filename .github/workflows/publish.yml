@@ -1,0 +1,52 @@
+name: Generate SQL Script for Database Update
+
+on:
+  push:
+    branches:
+      - main  # Trigger only on merges to the main branch
+
+jobs:
+  generate-sql:
+    runs-on: ubuntu-22.04
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Fetch full history to detect changes
+
+      # Step 2: Get Modified Files
+      - name: Get Modified Files
+        id: modified_files
+        run: |
+          MODIFIED_FILES=$(git diff --name-only HEAD^ HEAD | grep '\.yaml$' || echo "")
+          echo "files=$MODIFIED_FILES" >> $GITHUB_ENV
+
+      # Step 3: Set up Python
+      - name: Set Up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.8
+
+      # Step 4: Install dependencies
+      - name: Install Dependencies
+        run: |
+          pip install PyYAML==6.0
+
+      # Step 5: Generate SQL Script
+      - name: Generate SQL Script
+        run: |
+          if [ -z "$files" ]; then
+            echo "No modified YAML files to process."
+          else
+            python scripts/generate_sql.py $files
+          fi
+
+      # Step 6: Save SQL Script as Artifact
+      - name: Upload SQL Script as Artifact
+        if: env.files != ''  # Only upload if there are modified files
+        uses: actions/upload-artifact@v4
+        with:
+          name: eazyskills_update.sql
+          path: eazyskills_update.sql

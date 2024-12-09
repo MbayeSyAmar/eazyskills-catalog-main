@@ -1,0 +1,32 @@
+id: null
+name: Introduction à Kubernetes
+url: https://eazytraining.fr/cours/introduction-a-kubernetes/
+duration_hours: 10
+level: Beginner
+objectives: Apprenez à déployer vos premières applications conteneurisées avec Kubernetes et à gérer efficacement vos clusters.
+description: >
+  Kubernetes, souvent abrégé en K8s ou "kube", est une plateforme Open Source qui automatise l'exploitation des conteneurs Linux. Elle permet d’éliminer de nombreux processus manuels associés au déploiement et à la mise à l’échelle des applications conteneurisées.
+  Kubernetes vous aide à gérer facilement et efficacement des clusters d’hôtes exécutant des conteneurs Linux. Ces clusters peuvent couvrir des hôtes situés dans des clouds publics, privés ou hybrides, ce qui fait de Kubernetes la plateforme idéale pour héberger des applications cloud-native nécessitant une mise à l’échelle rapide, comme la diffusion de données en temps réel via Apache Kafka.
+  Dans cette formation, vous apprendrez à déployer vos premières applications à l’aide des pods, services, ReplicaSets et du gestionnaire de Chart Helm.
+prerequisites: >
+  Avoir de bonnes bases sur Docker.
+  [Cours recommandé](https://eazytraining.fr/cours/introduction-a-docker/)
+technologies:
+  - kubernetes
+  - k8s
+  - helm
+  - pods
+language: French
+deprecated: false
+target_audience:
+  - Développeurs
+  - Administrateurs systèmes et réseaux
+  - Managers et chefs de projet IT
+instructor:
+  name: Dirane TAFEN
+  title: Consultant et Instructeur dans le Cloud et le DevOps
+features:
+  - Une plateforme de TP accessible via votre navigateur
+  - Des exemples concrets pour chaque notion abordée
+  - Réalisation des Labs directement sur la plateforme EAZYTraining
+  - Pratique intensive pour mieux appréhender les notions

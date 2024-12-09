@@ -1,0 +1,54 @@
+name: Validate Repository Files
+
+on:
+  pull_request:
+    branches:
+      - main  # Trigger validation on pull requests to the main branch
+
+jobs:
+  validate:
+    runs-on: ubuntu-22.04  # Use a specific version of Ubuntu
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Ensure we fetch the full history to detect changes
+
+      # Step 2: Get list of modified files
+      - name: Get Modified Files
+        id: modified_files
+        run: |
+          MODIFIED_FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep '\.yaml$' || echo "")
+          echo "files=$MODIFIED_FILES" >> $GITHUB_ENV
+
+      # Step 3: Set up Python
+      - name: Set Up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.8
+
+      # Step 4: Install dependencies
+      - name: Install Dependencies
+        run: |
+          pip install yamllint==1.30.0
+          pip install PyYAML==6.0
+
+      # Step 5: Validate Naming Convention
+      - name: Validate Naming Convention
+        run: |
+          if [ -z "$files" ]; then
+            echo "No YAML files modified."
+          else
+            python scripts/validate_naming.py $files
+          fi
+
+      # Step 6: Validate File Content
+      - name: Validate File Content
+        run: |
+          if [ -z "$files" ]; then
+            echo "No YAML files modified."
+          else
+            python scripts/validate_format.py $files
+          fi

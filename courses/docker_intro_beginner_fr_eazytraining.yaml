@@ -1,0 +1,17 @@
+id: null
+name: Introduction à Docker
+url: https://eazytraining.fr/cours/introduction-a-docker/
+duration_hours: 4
+level: Beginner
+objectives: Apprenez les bases de la conteneurisation et déployez vos premiers micro-services avec Docker.
+description: >
+  Le monde de l'IT a connu plusieurs évolutions notoire. Mais l'une des avancées les plus bouleversantes reste l'émergence des micro-services, permettant aux applications d’être plus agiles, plus flexibles, plus évolutives et plus scalable, pour le plus grand bonheur des développeurs et admins systèmes.
+  La mouvance DevOps a encore plus accentuée son adoption, c'est la raison pour laquelle c'est l'un des outils les plus incontournable sur le marché de l'IT.
+  Cette formation a pour but de vous permettre de créer vos propres micro-services à l'aide de Docker.
+prerequisites: Avoir les bases en ligne de commande Linux ainsi que les bases en administration système.
+technologies:
+  - docker
+  - docker-compose
+  - docker-swarm
+language: French
+deprecated: false
